@@ -1,4 +1,5 @@
- <div class="row">
+<app-search-form (searchableTerm)="searchGiphys($event)"></app-search-form>
+<div class="row">
    <div *ngFor="let giphy of giphys" class="col">
      <img src="{{ giphy.imagePath }}" alt="" >
    </div>

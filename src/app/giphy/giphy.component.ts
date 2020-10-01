@@ -34,7 +34,7 @@ export class GiphyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getTrending()
+this.getTrending()
   }
 
 }

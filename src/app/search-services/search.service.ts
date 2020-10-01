@@ -11,10 +11,7 @@ export class SearchService {
   searchGiphy(term: string){
     let endPoint = `https://api.giphy.com/v1/gifs/search?api_key=MHLo3ZDYuWeJyFh2q6tVxnrRfaVIECGl&q=${term}&limit=10&offset=0&rating=g&lang=en`
     let promise = new Promise((resolve, reject) => {
-      this.http
-        .get(endPoint)
-        .toPromise()
-        .then((results) => {
+      this.http.get(endPoint).toPromise().then((results) => {
           for (let i = 0; i < results['data'].length; i++) {
             let imageUrl = results['data'][i]['images']['original']['url'];
             let giphy = new Giphy(imageUrl);
