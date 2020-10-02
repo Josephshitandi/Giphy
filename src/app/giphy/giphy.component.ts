@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Giphy } from '../giphy';
+import { Load } from '../load'
+import { LoadService } from '../load-services/load.service';
 import { SearchService } from '../search-services/search.service';
 import { TrendingService } from '../trending-services/trending.service'
 
@@ -10,8 +12,9 @@ import { TrendingService } from '../trending-services/trending.service'
 })
 export class GiphyComponent implements OnInit {
   giphys: Giphy[];
+  loads: Load[];
 
-  constructor(public trendingServices: TrendingService, public searchService: SearchService) { }
+  constructor(public trendingServices: TrendingService, public searchService: SearchService, public loadMore: LoadService) { }
 
   getTrending(){
     this.trendingServices.getTrendingGiphy().then(() => {
@@ -32,9 +35,19 @@ export class GiphyComponent implements OnInit {
       }
     );
   }
+  loadGiphy(){
+    this.loadMore.loadService().then(() => {
+        this.loads = this.loadMore.loads;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
   ngOnInit(): void {
-this.getTrending()
+this.getTrending();
+this.loadGiphy()
   }
 
 }

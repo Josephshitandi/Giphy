@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Giphy } from '../giphy'
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class TrendingService {
   giphys: Giphy[] = [];
 
   getTrendingGiphy(){
-    let endPoint = `https://api.giphy.com/v1/gifs/trending?api_key=MHLo3ZDYuWeJyFh2q6tVxnrRfaVIECGl&limit=6&rating=g`
+    let endPoint = `https://api.giphy.com/v1/gifs/trending?api_key=${environment.apiKey}&limit=6&rating=g`
     let promise = new Promise((resolve, reject) => {
       this.http.get(endPoint).toPromise().then((results) => {
           for (let i = 0; i < results['data'].length; i++) {

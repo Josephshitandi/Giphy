@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Giphy } from '../giphy';
+//import { Giphy } from '../giphy';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { Load } from '../load';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SearchService {
-  giphys: Giphy[] = [];
+export class LoadService {
+  loads: Load[] = [];
 
-  searchGiphy(term: string){
-    let endPoint = `https://api.giphy.com/v1/gifs/search?api_key=${environment.apiKey}&q=${term}&limit=10&offset=0&rating=g&lang=en`
+  loadService(){
+    let endPoint = `https://api.giphy.com/v1/gifs/random?api_key=MHLo3ZDYuWeJyFh2q6tVxnrRfaVIECGl&tag=&rating=g`
     let promise = new Promise((resolve, reject) => {
       this.http.get(endPoint).toPromise().then((results) => {
           for (let i = 0; i < results['data'].length; i++) {
             let imageUrl = results['data'][i]['images']['original']['url'];
-            let giphy = new Giphy(imageUrl);
-            this.giphys.push(giphy);
+            let load = new Load(imageUrl);
+            this.loads.push(load);
             resolve();
           }
           (error) => {
