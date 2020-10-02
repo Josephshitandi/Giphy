@@ -1,6 +1,20 @@
 <app-search-form (searchableTerm)="searchGiphys($event)"></app-search-form>
-<div class="row">
+<!-- <div class="row">
    <div *ngFor="let giphy of giphys" class="col">
      <img src="{{ giphy.imagePath }}" alt="" >
    </div>
- </div>
+ </div> -->
+
+
+<!-- </div> -->
+<div class="img">
+  <div class="row">
+    <div *ngFor="let giphy of giphys" class="col-md-3">
+      <div class="card" style="width: 18rem;">
+       
+        <div class="card-body">
+          <img src="{{ giphy.imagePath }}" class="card-img-top" alt="..." height="200">
+        </div>
+      </div>
+    </div>
+  </div>
